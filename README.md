@@ -2,7 +2,7 @@
 
 Для установки сервера:
 
-1. Скачайте репозиторий
+1. Скачайте репозиторий https://github.com/oksan4ik10/rs-clone-server/tree/develope
 2. Установите зависимоcти npm i
 3. Запустите сервер командой npm start
 
