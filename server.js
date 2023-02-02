@@ -8,9 +8,7 @@ const path = require('path')
 const PORT = process.env.PORT || 3000
 
  
-app.use(require('morgan')('dev'))
 
-app.use(require('cors')())
 
 
 
