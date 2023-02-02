@@ -1,19 +1,17 @@
 const app = require('./app')
 const mongoose = require('mongoose')
-const bodyParser = require('body-parser')
+
 const path = require('path')
-const Books = require('./routes/books')
+
 
 
 const PORT = process.env.PORT || 3000
 
  
 app.use(require('morgan')('dev'))
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
+
 app.use(require('cors')())
 
-app.use(Books)
 
 
 async function start() {
