@@ -1,5 +1,7 @@
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken')
 const Users = require('../models/users');
+
 module.exports.auth = async function (req, res){
         const candidate = await Users.findOne({email:req.body.email});
         if(candidate){
@@ -29,7 +31,27 @@ module.exports.auth = async function (req, res){
 
 module.exports.login = async function (req, res){
     try{
+        const candidate = await Users.findOne({email: req.body.email});
+        if(candidate){
+            const passwordRes = bcrypt.compareSync(req.body.password, candidate.password)
+            if(passwordRes){
+                const token= jwt.sign({
+                    userId: candidate._id
+                }, 'dev-jwt', {expiresIn: 3600});
+                res.status(200).json({
+                    token: `Bearer ${token}`
+                })
+            } else{
+                res.status(401).json({
+                    message: "Пароль не верный. Попробуйте снова"
+                })
+            }
 
+        } else{
+            res.status(404).json({
+                message: "Пользователь с таким email не найден"
+            })
+        }
     }
     catch(e){
         console.log(e);
