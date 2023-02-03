@@ -1,6 +1,8 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const Users = require('../models/users');
+const config = require('../db/config')
+const errorHandler = require('../utils/errorHandler')
 
 module.exports.auth = async function (req, res){
         const candidate = await Users.findOne({email:req.body.email});
@@ -22,7 +24,7 @@ module.exports.auth = async function (req, res){
                 await user.save()
                 res.status(200).json(user)
             }catch(e){
-                console.log(e)
+                errorHandler(e)
             }
         }
 
@@ -37,7 +39,7 @@ module.exports.login = async function (req, res){
             if(passwordRes){
                 const token= jwt.sign({
                     userId: candidate._id
-                }, 'dev-jwt', {expiresIn: 3600});
+                }, config.keys, {expiresIn: 3600});
                 res.status(200).json({
                     token: `Bearer ${token}`
                 })
@@ -54,6 +56,6 @@ module.exports.login = async function (req, res){
         }
     }
     catch(e){
-        console.log(e);
+        errorHandler(e)
     }
 }
