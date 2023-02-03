@@ -4,7 +4,7 @@ const Users = require('../models/users');
 const config = require('../db/config')
 const errorHandler = require('../utils/errorHandler')
 
-module.exports.auth = async function (req, res){
+module.exports.login = async function (req, res){
         const candidate = await Users.findOne({email:req.body.email});
         if(candidate){
             res.status(409).json({
@@ -31,7 +31,7 @@ module.exports.auth = async function (req, res){
 
 }
 
-module.exports.login = async function (req, res){
+module.exports.auth = async function (req, res){
     try{
         const candidate = await Users.findOne({email: req.body.email});
         if(candidate){
