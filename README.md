@@ -16,6 +16,56 @@
 
 Выбор книги по id (Например, http://localhost:3000/api/books/63da9b85ef7a8be965942753)
 
+Получить рейтинг книги
+
+<details>
+
+- **URL**
+
+  /api/grades/books/:booksId <br>
+
+  Наример, http://localhost:3000/api/grades/books/63dbd4fe942b52bc2a107c35
+
+- **Method:**
+
+  `GET`
+
+- **Headers:**
+  None
+
+- **URL Params**
+
+  booksId - идентификатор книги
+
+- **Query Params**
+
+  None
+
+- **Data Params**
+
+  None
+
+- **Success Response:**
+
+  - **Code:** 201 CREATED <br />
+    **Content:**
+    ```json
+    {
+      "raiting": 3
+    }
+    ```
+
+- **Error Response:**
+
+  - **Code:** 500 <br />
+    **Content:**
+
+- **Notes:**
+
+  None
+
+</details>
+
 ## Регистрация
 
 <details>
@@ -207,56 +257,6 @@
   - **Code:** 401 <br />
     **Content:**
     Unauthorized
-
-- **Notes:**
-
-  None
-
-</details>
-
-Получить рейтинг книги
-
-<details>
-
-- **URL**
-
-  /api/grades/books/:booksId <br>
-
-  Наример, http://localhost:3000/api/grades/books/63dbd4fe942b52bc2a107c35
-
-- **Method:**
-
-  `GET`
-
-- **Headers:**
-  None
-
-- **URL Params**
-
-  booksId - идентификатор книги
-
-- **Query Params**
-
-  None
-
-- **Data Params**
-
-  None
-
-- **Success Response:**
-
-  - **Code:** 201 CREATED <br />
-    **Content:**
-    ```json
-    {
-      "raiting": 3
-    }
-    ```
-
-- **Error Response:**
-
-  - **Code:** 500 <br />
-    **Content:**
 
 - **Notes:**
 
