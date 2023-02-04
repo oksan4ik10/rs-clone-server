@@ -18,3 +18,12 @@ module.exports.getById= async function (req, res){
         errorHandler(res, e)
     }
 }
+
+module.exports.getBestBook = async (res, req) => {
+    try{
+
+    } catch(e){
+        errorHandler(res,e)
+    }
+
+}

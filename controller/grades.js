@@ -35,37 +35,13 @@ module.exports.create = async function (req, res){
     }
 }
 
-module.exports.getBook = async (req, res) => {
-    try{
-
-        const books = await Grades.find({
-            bookId: req.params.bookId
-        })
-        const grade = books.reduce((prev,next)=>prev+next.value, 0) / books.length;
-        console.log(grade);
-        res.status(200).json({
-            raiting: grade
-        })
-
-    } catch(e){
-       errorHandler(res,e)
-    }
-
-}
 module.exports.getUserGrade = async (req, res) => {
     try{
-
+        const gradeUser = await Grades.findOne({bookId: req.body.bookId, userId: req.user.id});
+        res.status(200).json(gradeUser)
     } catch(e){
         errorHandler(res,e)
     }
 
 }
 
-module.exports.getBestBook = async (res, req) => {
-    try{
-
-    } catch(e){
-        errorHandler(res,e)
-    }
-
-}
