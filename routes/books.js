@@ -4,5 +4,5 @@ const controller = require('../controller/books')
 
 router.get('/', controller.getAll)
 router.get('/:id', controller.getById)
-router.get('/best', controller.getBestBook)
+router.get('/best/list', controller.getBestBook)
 module.exports = router

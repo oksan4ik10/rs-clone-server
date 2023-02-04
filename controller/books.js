@@ -19,9 +19,10 @@ module.exports.getById= async function (req, res){
     }
 }
 
-module.exports.getBestBook = async (res, req) => {
+module.exports.getBestBook = async (req, res) => {
     try{
-
+        const books = await Books.find({}).sort({raiting: -1}).limit(7)
+        res.status(200).json(books)
     } catch(e){
         errorHandler(res,e)
     }
