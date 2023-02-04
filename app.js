@@ -4,6 +4,7 @@ const booksRoute = require('./routes/books')
 const authRoute = require('./routes/auth')
 const gradeRoute = require('./routes/grades')
 const userRoute = require('./routes/users')
+const reviewRoute = require('./routes/reviews')
 
 const passport = require('passport')
 const app = express()
@@ -20,6 +21,6 @@ app.use('/api/books',booksRoute)
 app.use('/api',authRoute)
 app.use('/api/grades', gradeRoute)
 app.use('/api/users', userRoute)
-
+app.use('/api/reviews', reviewRoute)
 
 module.exports = app;

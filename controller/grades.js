@@ -1,7 +1,7 @@
 const Users = require('../models/users')
 const Grades = require('../models/grades')
 
-module.exports.postGrade = async function (req, res){
+module.exports.create = async function (req, res){
     try{
         const grade = await Grades.findOne({bookId: req.body.bookId, userId: req.user.id})
         if(grade){
@@ -21,4 +21,30 @@ module.exports.postGrade = async function (req, res){
     catch(e){
         console.log(e);
     }
+}
+
+module.exports.getBook = async (res, req) => {
+    try{
+
+    } catch(e){
+        errorHandler(res,e)
+    }
+
+}
+module.exports.getUserGrade = async (res, req) => {
+    try{
+
+    } catch(e){
+        errorHandler(res,e)
+    }
+
+}
+
+module.exports.getBestBook = async (res, req) => {
+    try{
+
+    } catch(e){
+        errorHandler(res,e)
+    }
+
 }
