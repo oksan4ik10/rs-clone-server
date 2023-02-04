@@ -22,10 +22,6 @@ const bookSchema = new Schema({
     type: String,
     required:true,
     default:"Боевик"
-  },
-  raiting:{
-    type: Number,
-    default: 0
   }
 
 })

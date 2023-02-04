@@ -1,5 +1,5 @@
 const errorHandler = require('../utils/errorHandler')
-module.exports.create = async (res, req) => {
+module.exports.create = async (req, res) => {
     try{
 
     } catch(e){
@@ -8,7 +8,7 @@ module.exports.create = async (res, req) => {
 
 }
 
-module.exports.delete = async (res, req) => {
+module.exports.delete = async (req, res) => {
     try{
 
     } catch(e){
@@ -16,7 +16,7 @@ module.exports.delete = async (res, req) => {
     }
 
 }
-module.exports.update = async (res, req) => {
+module.exports.update = async (req, res) => {
     try{
 
     } catch(e){
@@ -24,7 +24,7 @@ module.exports.update = async (res, req) => {
     }
 
 }
-module.exports.getReviewUser = async (res, req) => {
+module.exports.getReviewUser = async (req, res) => {
     try{
 
     } catch(e){
@@ -32,7 +32,7 @@ module.exports.getReviewUser = async (res, req) => {
     }
 
 }
-module.exports.getBookReviews = async (res, req) => {
+module.exports.getBookReviews = async (req, res) => {
     try{
 
     } catch(e){
@@ -40,7 +40,7 @@ module.exports.getBookReviews = async (res, req) => {
     }
 
 }
-module.exports.geReviewsLast = async (res, req) => {
+module.exports.geReviewsLast = async (req, res) => {
     try{
 
     } catch(e){

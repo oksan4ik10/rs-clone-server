@@ -1,5 +1,6 @@
 const Users = require('../models/users')
 const Grades = require('../models/grades')
+const errorHandler = require('../utils/errorHandler')
 
 module.exports.create = async function (req, res){
     try{
@@ -19,19 +20,28 @@ module.exports.create = async function (req, res){
         }
     }
     catch(e){
-        console.log(e);
-    }
-}
-
-module.exports.getBook = async (res, req) => {
-    try{
-
-    } catch(e){
         errorHandler(res,e)
     }
+}
+
+module.exports.getBook = async (req, res) => {
+    try{
+
+        const books = await Grades.find({
+            bookId: req.params.bookId
+        })
+        const grade = books.reduce((prev,next)=>prev+next.value, 0) / books.length;
+        console.log(grade);
+        res.status(200).json({
+            raiting: grade
+        })
+
+    } catch(e){
+       errorHandler(res,e)
+    }
 
 }
-module.exports.getUserGrade = async (res, req) => {
+module.exports.getUserGrade = async (req, res) => {
     try{
 
     } catch(e){

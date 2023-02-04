@@ -1,5 +1,5 @@
 const errorHandler = require('../utils/errorHandler')
-module.exports.getPersonal = async (res, req) => {
+module.exports.getPersonal = async (req, res) => {
     try{
 
     } catch(e){
@@ -8,7 +8,7 @@ module.exports.getPersonal = async (res, req) => {
 
 }
 
-module.exports.addBook = async (res, req) => {
+module.exports.addBook = async (req, res) => {
     try{
 
     } catch(e){
