@@ -8,7 +8,7 @@ module.exports.getPersonal = async (res, req) => {
 
 }
 
-module.exports.update = async (res, req) => {
+module.exports.addBook = async (res, req) => {
     try{
 
     } catch(e){

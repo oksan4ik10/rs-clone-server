@@ -3,6 +3,6 @@ const router = Router()
 const controller = require('../controller/users')
 
 router.get('/personal', controller.getPersonal)
-router.patch('/:id', controller.update)
+router.post('/', controller.addBook)
 
 module.exports = router

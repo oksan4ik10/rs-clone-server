@@ -59,6 +59,7 @@
       "email": "1235@mail.ru",
       "password": "$2a$10$gnDxenM9579YTPQv5L7G1edPoPKITTHQSKm1bfoyjle0iAEQIycaO",
       "name": "admin",
+      "img": "url",
       "books": [],
       "_id": "63dc3545eaf0ee58cae97a94",
       "__v": 0
