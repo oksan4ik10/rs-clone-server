@@ -24,7 +24,7 @@ module.exports.login = async function (req, res){
                 await user.save()
                 res.status(200).json(user)
             }catch(e){
-                errorHandler(e)
+                errorHandler(res, e)
             }
         }
 
@@ -56,6 +56,6 @@ module.exports.auth = async function (req, res){
         }
     }
     catch(e){
-        errorHandler(e)
+        errorHandler(res, e)
     }
 }
