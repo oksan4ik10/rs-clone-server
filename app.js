@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const booksRoute = require('./routes/books')
 const authRoute = require('./routes/auth')
 const gradeRoute = require('./routes/grades')
+const userRoute = require('./routes/users')
 
 const passport = require('passport')
 const app = express()
@@ -18,6 +19,7 @@ require('./middleware/passport')(passport)
 app.use('/api/books',booksRoute)
 app.use('/api',authRoute)
 app.use('/api/grades', gradeRoute)
+app.use('/api/users', userRoute)
 
 
 module.exports = app;
