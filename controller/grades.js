@@ -1,14 +1,15 @@
 const Users = require('../models/users')
 const Grades = require('../models/grades')
+const Books = require('../models/books')
 const errorHandler = require('../utils/errorHandler')
 
 module.exports.create = async function (req, res){
     try{
-        const grade = await Grades.findOne({bookId: req.body.bookId, userId: req.user.id})
-        if(grade){
-            grade.value = req.body.value;
-            await grade.save();
-            res.status(200).json(grade)
+        const gradeUser = await Grades.findOne({bookId: req.body.bookId, userId: req.user.id})
+        if(gradeUser){
+            gradeUser.value = req.body.value;
+            await gradeUser.save();
+      
         } else{
             const gradeNew = new Grades({
                 bookId: req.body.bookId,
@@ -16,8 +17,18 @@ module.exports.create = async function (req, res){
                 value: req.body.value
             })
             await gradeNew.save()
-            res.status(200).json(gradeNew)
+         
         }
+        const books = await Grades.find({
+            bookId: req.body.bookId
+        })
+        const grade = books.reduce((prev,next)=>prev+next.value, 0) / books.length;
+        const book = await Books.findOne({bookId: req.body.bookId})
+        book.raiting = grade;
+        await book.save()
+        res.status(200).json(book)
+
+
     }
     catch(e){
         errorHandler(res,e)
