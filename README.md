@@ -218,3 +218,63 @@
   None
 
 </details>
+
+Получить оценку пользователя по книге <br>
+
+<details>
+
+- **URL**
+
+  /api/grades/user
+
+- **Method:**
+
+  `GET`
+
+- **Headers:**
+
+  `'Content-Type': 'application/json'`
+  `'Authorization': '${token}' `
+
+- **URL Params**
+
+  None
+
+- **Query Params**
+
+  None
+
+- **Data Params**
+  value - оценка для книги
+
+  ```typescript
+    {
+      bookId: string,
+    }
+  ```
+
+- **Success Response:**
+
+  - **Code:** 201 CREATED <br />
+    **Content:**
+    ```json
+    {
+      "_id": "63deb8eff9151e79eb689963",
+      "bookId": "63dbd4fe942b52bc2a107c35",
+      "userId": "63de41cd9d58adb2022c92cf",
+      "value": 7,
+      "__v": 0
+    }
+    ```
+
+- **Error Response:**
+
+  - **Code:** 401 <br />
+    **Content:**
+    Unauthorized
+
+- **Notes:**
+
+  None
+
+</details>
