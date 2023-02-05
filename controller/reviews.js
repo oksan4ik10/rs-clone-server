@@ -72,3 +72,16 @@ module.exports.geReviewsLast = async (req, res) => {
     }
 
 }
+module.exports.checkReviewUser = async (req, res) => {
+    try{
+        const review = await Reviews.findOne({bookId: req.params.bookId, userId: req.user.id})
+        res.status(200).json({
+            status:!!review
+        })
+
+
+    } catch(e){
+        errorHandler(res,e)
+    }
+
+}

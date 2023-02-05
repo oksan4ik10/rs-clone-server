@@ -835,3 +835,53 @@ None
 
   None
   </details>
+
+  Проверка есть ли рецензия у пользователя на книгу <br>
+
+<details>
+
+- **URL**
+
+  /api/reviews/check/:bookId
+
+- **Method:**
+
+  `GET`
+
+- **Headers:**
+
+  `'Authorization': '${token}' `
+
+- **URL Params**
+
+  bookId - идентификатор книги
+
+- **Query Params**
+
+  None
+
+- **Data Params**
+
+  None
+
+- **Success Response:**
+
+  - **Code:** 200 CREATED <br />
+    **Content:**
+    ```json
+    {
+      "status": true
+    }
+    ```
+
+- **Error Response:**
+
+  - **Code:** 401 <br />
+    **Content:**
+    Unauthorized
+
+- **Notes:**
+
+  "status": true - если рецензия есть у пользователя, false если нету
+
+</details>

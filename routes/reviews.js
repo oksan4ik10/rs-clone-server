@@ -9,5 +9,6 @@ router.delete('/:reviewId', passport.authenticate('jwt', {session: false}), cont
 router.get('/user/:bookId', passport.authenticate('jwt', {session: false}),controller.getReviewUser)
 router.get('/book/:bookId',controller.getBookReviews)
 router.get('/last',controller.geReviewsLast)
+router.get('/check/:bookId', passport.authenticate('jwt', {session: false}),controller.checkReviewUser)
 
 module.exports = router
