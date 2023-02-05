@@ -42,3 +42,22 @@ module.exports.deleteBook = async (req, res) => {
     }
 
 }
+
+module.exports.checkBook = async (req, res) => {
+    try{
+        
+        const user = await Users.findOne( {$and: [
+            {_id: req.user.id},
+            {books:{ $all: req.params.bookId}}]}
+        )
+        if(user) res.status(200).json({
+            status: true
+        })
+        else res.status(200).json({
+            status: false
+        })
+    } catch(e){
+        errorHandler(res,e)
+    }
+
+}

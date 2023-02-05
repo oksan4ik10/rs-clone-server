@@ -505,3 +505,53 @@
   modifiedCount - если книги нет у пользователя, то вернется значение 0, иначе - 1
 
 </details>
+
+Проверка есть ли книга у пользователя в прочитанном <br>
+
+<details>
+
+- **URL**
+
+  /api/users/books/:bookId
+
+- **Method:**
+
+  `GET`
+
+- **Headers:**
+
+  `'Authorization': '${token}' `
+
+- **URL Params**
+
+  bookId - идентификатор книги
+
+- **Query Params**
+
+  None
+
+- **Data Params**
+
+  None
+
+- **Success Response:**
+
+  - **Code:** 200 CREATED <br />
+    **Content:**
+    ```json
+    {
+      "status": true
+    }
+    ```
+
+- **Error Response:**
+
+  - **Code:** 401 <br />
+    **Content:**
+    Unauthorized
+
+- **Notes:**
+
+  "status": true - если книга есть у пользователя, false если нету
+
+</details>

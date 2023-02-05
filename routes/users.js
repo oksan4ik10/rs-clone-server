@@ -8,4 +8,6 @@ router.get('/personal', passport.authenticate('jwt', {session: false}), controll
 router.post('/', passport.authenticate('jwt', {session: false}),controller.addBook)
 router.post('/delete', passport.authenticate('jwt', {session: false}),controller.deleteBook)
 
+router.get('/books/:bookId', passport.authenticate('jwt', {session: false}), controller.checkBook)
+
 module.exports = router
