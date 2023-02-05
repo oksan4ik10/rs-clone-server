@@ -19,12 +19,6 @@ const UserSchema = new Schema({
         default: "https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-scaled.jpeg"
     },
     books:[
-        { book:{
-            ref:'books',
-            type: Schema.Types.ObjectId,
-           
-        },
-        required: false}
        
     ]
 })
