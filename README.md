@@ -727,3 +727,111 @@
 
   None
   </details>
+
+Получить все рецензии книги <br>
+
+<details>
+
+- **URL**
+
+  /api/reviews/book/:bookId
+
+- **Method:**
+
+  `GET`
+
+- **Headers:**
+
+None
+
+- **URL Params**
+
+  bookId - идентификатор книги
+
+- **Query Params**
+
+  None
+
+- **Data Params**
+
+  None
+
+- **Success Response:**
+
+  - **Code:** 200 CREATED <br />
+    **Content:**
+    ```json
+    [
+    {
+        "_id": "63dfc79f143594051e3c7cf5",
+        "bookId": "63dbd4fe942b52bc2a107c35",
+        "userId": "63dfbf89025b6e369e73986c",
+        "text": "Text",
+        "date": "2023-02-05T15:13:31.781Z",
+        "__v": 0
+    },
+    {...}
+    ]
+    ```
+
+- **Error Response:**
+  None
+
+- **Notes:**
+
+  None
+  </details>
+
+  Получить последние 10 рецензий <br>
+
+<details>
+
+- **URL**
+
+  /api/reviews/last
+
+- **Method:**
+
+  `GET`
+
+- **Headers:**
+
+None
+
+- **URL Params**
+
+  None
+
+- **Query Params**
+
+  None
+
+- **Data Params**
+
+  None
+
+- **Success Response:**
+
+  - **Code:** 200 CREATED <br />
+    **Content:**
+    ```json
+    [
+    {
+        "_id": "63dfc79f143594051e3c7cf5",
+        "bookId": "63dbd4fe942b52bc2a107c35",
+        "userId": "63dfbf89025b6e369e73986c",
+        "text": "Text",
+        "date": "2023-02-05T15:13:31.781Z",
+        "__v": 0
+    },
+    {...}
+    ]
+    ```
+
+- **Error Response:**
+  None
+
+- **Notes:**
+
+  None
+  </details>

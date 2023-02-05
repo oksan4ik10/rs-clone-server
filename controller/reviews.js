@@ -53,6 +53,8 @@ module.exports.getReviewUser = async (req, res) => {
 }
 module.exports.getBookReviews = async (req, res) => {
     try{
+        const reviews = await Reviews.find({bookId: req.params.bookId})
+        res.status(200).json(reviews)
 
     } catch(e){
         errorHandler(res,e)
@@ -61,6 +63,9 @@ module.exports.getBookReviews = async (req, res) => {
 }
 module.exports.geReviewsLast = async (req, res) => {
     try{
+        const reviews = await Reviews.find({}).sort({date:-1}).limit(10)
+        res.status(200).json(reviews)
+
 
     } catch(e){
         errorHandler(res,e)
