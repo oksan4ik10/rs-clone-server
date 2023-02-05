@@ -26,3 +26,19 @@ module.exports.addBook = async (req, res) => {
     }
 
 }
+
+module.exports.deleteBook = async (req, res) => {
+    try{
+        
+        const user = await Users.updateOne(
+            {_id: req.user.id},
+            {$pull: { books: req.body.bookId}}
+        )
+        res.status(200).json({
+            modifiedCount: user.modifiedCount
+        })
+    } catch(e){
+        errorHandler(res,e)
+    }
+
+}

@@ -340,7 +340,63 @@
 
 ## Пользователи
 
-Добавить книгу в прочитанное<br>
+Получить данные о пользователе <br>
+
+<details>
+
+- **URL**
+
+  /api/users/personal
+
+- **Method:**
+
+  `GET`
+
+- **Headers:**
+
+  `'Authorization': '${token}' `
+
+- **URL Params**
+
+  None
+
+- **Query Params**
+
+  None
+
+- **Data Params**
+
+  None
+
+- **Success Response:**
+
+  - **Code:** 200 CREATED <br />
+    **Content:**
+    ```json
+    {
+      "_id": "63de41cd9d58adb2022c92cf",
+      "email": "12353@mail.ru",
+      "password": "$2a$10$i1foqW7O20qLLBG0gsbSaeqz0duPBGljIqELRkgGiNM9Zo1PdfobS",
+      "name": "Test test",
+      "img": "https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-scaled.jpeg",
+      "books": ["63dbd4fe942b52bc2a107c35", "63dbd4fe942b52bc2a107c36"],
+      "__v": 0
+    }
+    ```
+
+- **Error Response:**
+
+  - **Code:** 401 <br />
+    **Content:**
+    Unauthorized
+
+- **Notes:**
+
+  None
+
+</details>
+
+Добавить книгу в прочитанное пользователем<br>
 
 <details>
 
@@ -395,20 +451,21 @@
 
 </details>
 
-Получить данные о пользователе <br>
+Удалить книгу их прочитанного пользователем<br>
 
 <details>
 
 - **URL**
 
-  /api/users/personal
+  /api/users/delete
 
 - **Method:**
 
-  `GET`
+  `POST`
 
 - **Headers:**
 
+  `'Content-Type': 'application/json'`
   `'Authorization': '${token}' `
 
 - **URL Params**
@@ -421,21 +478,19 @@
 
 - **Data Params**
 
-  None
+  ```typescript
+    {
+      bookId: string,
+    }
+  ```
 
 - **Success Response:**
 
-  - **Code:** 200 CREATED <br />
+  - **Code:** 200 <br />
     **Content:**
     ```json
     {
-      "_id": "63de41cd9d58adb2022c92cf",
-      "email": "12353@mail.ru",
-      "password": "$2a$10$i1foqW7O20qLLBG0gsbSaeqz0duPBGljIqELRkgGiNM9Zo1PdfobS",
-      "name": "Test test",
-      "img": "https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-scaled.jpeg",
-      "books": ["63dbd4fe942b52bc2a107c35", "63dbd4fe942b52bc2a107c36"],
-      "__v": 0
+      "modifiedCount": 1
     }
     ```
 
@@ -447,6 +502,6 @@
 
 - **Notes:**
 
-  None
+  modifiedCount - если книги нет у пользователя, то вернется значение 0, иначе - 1
 
 </details>
