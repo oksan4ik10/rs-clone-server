@@ -3,7 +3,6 @@ const Users = require('../models/users')
 module.exports.getPersonal = async (req, res) => {
     try{
         const user = await Users.findOne({_id: req.user.id})
-        console.log(user.books);
         res.status(200).json(user)
 
     } catch(e){
