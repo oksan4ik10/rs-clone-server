@@ -41,17 +41,11 @@ module.exports.delete = async (req, res) => {
     }
 
 }
-module.exports.update = async (req, res) => {
-    try{
 
-    } catch(e){
-        errorHandler(res,e)
-    }
-
-}
 module.exports.getReviewUser = async (req, res) => {
     try{
-
+        const review = await Reviews.findOne({bookId: req.params.bookId, userId: req.user.id})
+        res.status(200).json(review)
     } catch(e){
         errorHandler(res,e)
     }
