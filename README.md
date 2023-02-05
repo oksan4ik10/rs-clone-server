@@ -555,3 +555,121 @@
   "status": true - если книга есть у пользователя, false если нету
 
 </details>
+
+## Рецензии
+
+Добавить или изменить рецензию
+
+<details>
+
+- **URL**
+
+  /api/reviews
+
+- **Method:**
+
+  `POST`
+
+- **Headers:**
+
+  `'Content-Type': 'application/json'`
+  `'Authorization': '${token}' `
+
+- **URL Params**
+
+  None
+
+- **Query Params**
+
+  None
+
+- **Data Params**
+
+  ```typescript
+    {
+      "bookId": string,
+      "text": string
+    }
+  ```
+
+- **Success Response:**
+
+  - **Code:** 200 <br />
+    **Content:**
+    ```json
+    {
+      "_id": "63dfc06c025b6e369e739872",
+      "bookId": "63dbd4fe942b52bc2a107c35",
+      "userId": "63dfbf89025b6e369e73986c",
+      "text": "Test test",
+      "date": "2023-02-05T14:48:16.476Z",
+      "__v": 0
+    }
+    ```
+
+- **Error Response:**
+
+  - **Code:** 401 <br />
+    **Content:**
+    Unauthorized
+
+- **Notes:**
+
+  Если пользователь попытается добавить еще одну рецензию на книгу, то данные перезапишутся
+
+</details>
+
+Удалить рецензию
+
+<details>
+
+- **URL**
+
+  /api/reviews/:reviewId
+
+- **Method:**
+
+  `DELETE`
+
+- **Headers:**
+
+  `'Authorization': '${token}' `
+
+- **URL Params**
+
+  reviewId:string - id рецензии
+
+- **Query Params**
+
+  None
+
+- **Data Params**
+  None
+
+- **Success Response:**
+
+  - **Code:** 200 <br />
+    **Content:**
+    ```json
+    {
+      "success": true
+    }
+    ```
+
+- **Error Response:**
+
+  - **Code:** 401 <br />
+    **Content:**
+    Unauthorized
+  - **Code:** 404 <br />
+    **Content:**
+    ```json
+    {
+      "success": false,
+      "message": "Книга с таким id не найдена"
+    }
+    ```
+
+- **Notes:**
+404 возможно не понадобится
+</details>

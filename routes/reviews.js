@@ -5,10 +5,9 @@ const passport = require('passport')
 const controller = require('../controller/reviews')
 
 router.post('/', passport.authenticate('jwt', {session: false}), controller.create)
-router.delete('/:id', passport.authenticate('jwt', {session: false}), controller.delete)
-router.patch('/:id', passport.authenticate('jwt', {session: false}),controller.update)
+router.delete('/:reviewId', passport.authenticate('jwt', {session: false}), controller.delete)
 router.get('/user/:bookId', passport.authenticate('jwt', {session: false}),controller.getReviewUser)
-router.get('/:bookId',controller.getBookReviews)
+router.get('/book/:bookId',controller.getBookReviews)
 router.get('/last',controller.geReviewsLast)
 
 module.exports = router
