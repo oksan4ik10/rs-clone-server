@@ -1,18 +1,24 @@
 const errorHandler = require('../utils/errorHandler')
 const Reviews = require('../models/reviews')
+const Users = require('../models/users')
 module.exports.create = async (req, res) => {
     try{
         const review = await Reviews.findOne({bookId: req.body.bookId, userId: req.user.id})
+        const userData = await Users.findOne({userId: req.user.id})
         if(review){
             review.text = req.body.text;
             review.date = Date.now()
+            review.userImg = userData.img;
+            review.userName = userData.name;
             await review.save();
             res.status(200).json(review)
         } else{
             const reviewNew = new Reviews({
                 bookId: req.body.bookId,
                 userId: req.user.id,
-                text: req.body.text
+                text: req.body.text,
+                userImg: userData.img,
+                userName: userData.name
             })
             await reviewNew.save()
             res.status(200).json(reviewNew)

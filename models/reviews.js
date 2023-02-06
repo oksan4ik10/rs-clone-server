@@ -6,6 +6,14 @@ const ReviewSchema = new Schema ({
         type: Schema.Types.ObjectId,
         required: true       
     },
+    userImg: {
+        type:String,
+        default: "https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-scaled.jpeg"
+    },
+    userName:{
+        type: String,
+        default: "Test"
+    },
     userId:{
         ref:'users',
         type: Schema.Types.ObjectId,
