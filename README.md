@@ -291,7 +291,7 @@
 
 - **Headers:**
 
-  `'Authorization': '${token}' `
+`'Content-Type': 'application/json'`
 
 - **URL Params**
 
@@ -303,7 +303,11 @@
 
 - **Data Params**
 
-  None
+  ```typescript
+    {
+      userId: string,
+    }
+  ```
 
 - **Success Response:**
 

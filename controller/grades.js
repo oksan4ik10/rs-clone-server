@@ -37,7 +37,7 @@ module.exports.create = async function (req, res){
 
 module.exports.getUserGrade = async (req, res) => {
     try{
-        const gradeUser = await Grades.findOne({bookId: req.params.bookId, userId: req.user.id});
+        const gradeUser = await Grades.findOne({bookId: req.params.bookId, userId: req.body.id});
         if(gradeUser) res.status(200).json(gradeUser)
         else res.status(404).json({
             "message": "Нет оценки"
