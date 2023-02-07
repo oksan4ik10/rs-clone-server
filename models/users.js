@@ -16,7 +16,7 @@ const UserSchema = new Schema({
     },
     img: {
         type: String,
-        default: "https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-scaled.jpeg"
+        default: "./images/avatar.jpg"
     },
     books:[
        
