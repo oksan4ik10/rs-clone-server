@@ -20,6 +20,7 @@ const UserSchema = new Schema({
     },
     books:[
        
-    ]
+    ],
+    booksLike:[]
 })
 module.exports = model('users', UserSchema)

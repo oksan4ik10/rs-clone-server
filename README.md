@@ -400,7 +400,8 @@
 
 </details>
 
-Добавить книгу в прочитанное пользователем<br>
+
+Добавить книгу в **прочитанное** пользователем<br>
 
 <details>
 
@@ -448,6 +449,13 @@
   - **Code:** 401 <br />
     **Content:**
     Unauthorized
+
+    - **Code:** 409 <br />
+    **Content:**
+        ```json
+        {
+            "message": "Книга уже есть в разделе 'Хочу почитать' "
+        }
 
 - **Notes:**
 
@@ -557,6 +565,68 @@
 - **Notes:**
 
   "status": true - если книга есть у пользователя, false если нету
+
+</details>
+
+Добавить книгу в **хочу прочитать** пользователем<br>
+
+<details>
+
+- **URL**
+
+  /api/users/booksLike
+
+- **Method:**
+
+  `POST`
+
+- **Headers:**
+
+  `'Content-Type': 'application/json'`
+  `'Authorization': '${token}' `
+
+- **URL Params**
+
+  None
+
+- **Query Params**
+
+  None
+
+- **Data Params**
+
+  ```typescript
+    {
+      bookId: string,
+    }
+  ```
+
+- **Success Response:**
+
+  - **Code:** 200 <br />
+    **Content:**
+    ```json
+    {
+      "modifiedCount": 1
+    }
+    ```
+
+- **Error Response:**
+
+  - **Code:** 401 <br />
+    **Content:**
+    Unauthorized
+
+    - **Code:** 409 <br />
+    **Content:**
+        ```json
+        {
+            "message": "Книга уже есть в разделе прочитанное "
+        }
+
+- **Notes:**
+
+  modifiedCount - если книга уже была у пользователя, то вернется значение 0, иначе - 1
 
 </details>
 
