@@ -378,13 +378,14 @@
     **Content:**
     ```json
     {
-      "_id": "63de41cd9d58adb2022c92cf",
-      "email": "12353@mail.ru",
-      "password": "$2a$10$i1foqW7O20qLLBG0gsbSaeqz0duPBGljIqELRkgGiNM9Zo1PdfobS",
-      "name": "Test test",
-      "img": "https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-scaled.jpeg",
-      "books": ["63dbd4fe942b52bc2a107c35", "63dbd4fe942b52bc2a107c36"],
-      "__v": 0
+      "_id": "63dfbf89025b6e369e73986c",
+      "email": "admin@mail.ru",
+      "password": "$2a$10$PM8ZUfpqLW.kOLeReWNMIeJUqr3bqSJl8hgNfSCLpGSBbwmgwBkiW",
+      "name": "Oksana",
+      "img": "./images/avatar.jpg",
+      "books": ["63dbd4fe942b52bc2a107c35", "63dbd4fe942b52bc2a107c37"],
+      "__v": 0,
+      "booksLike": ["63dbd4fe942b52bc2a107c36"]
     }
     ```
 
