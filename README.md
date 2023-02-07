@@ -120,7 +120,8 @@
       "img": "url",
       "books": [],
       "_id": "63dc3545eaf0ee58cae97a94",
-      "__v": 0
+      "__v": 0,
+      "booksLike": []
     }
     ```
 
