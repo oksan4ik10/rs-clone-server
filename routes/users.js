@@ -14,5 +14,6 @@ router.post('/booksLike', passport.authenticate('jwt', {session: false}),control
 router.post('/booksLike/delete', passport.authenticate('jwt', {session: false}),controller.deleteLikeBook)
 
 router.get('/booksLike/:bookId', passport.authenticate('jwt', {session: false}), controller.checkLikeBook)
+router.get('/booksCheck/:bookId', passport.authenticate('jwt', {session: false}), controller.checkLikesBook)
 
 module.exports = router

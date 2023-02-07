@@ -738,6 +738,56 @@
 
 </details>
 
+Проверка есть ли книга у пользователя в **хочу прочитать** или **прочитанное** <br>
+
+<details>
+
+- **URL**
+
+  /api/users/booksCheck/:bookId
+
+- **Method:**
+
+  `GET`
+
+- **Headers:**
+
+  `'Authorization': '${token}' `
+
+- **URL Params**
+
+  bookId - идентификатор книги
+
+- **Query Params**
+
+  None
+
+- **Data Params**
+
+  None
+
+- **Success Response:**
+
+  - **Code:** 200 CREATED <br />
+    **Content:**
+    ```json
+    {
+      "status": string
+    }
+    ```
+
+- **Error Response:**
+
+  - **Code:** 401 <br />
+    **Content:**
+    Unauthorized
+
+- **Notes:**
+
+  "status": booksLike - если книга есть у пользователя в избранном, books - если книга у польозвателя в прочитанном, false если нет нигде
+
+</details>
+
 ## Рецензии
 
 Добавить или изменить рецензию

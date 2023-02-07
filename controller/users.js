@@ -135,3 +135,30 @@ module.exports.checkLikeBook = async (req, res) => {
     }
 
 }
+
+module.exports.checkLikesBook = async (req, res) => {
+    try{
+        
+        const userLike = await Users.findOne( {$and: [
+            {_id: req.user.id},
+            {booksLike:{ $all: req.params.bookId}}]}
+        )
+        if(userLike) {res.status(200).json({
+            status: "booksLike"
+        })} else{
+            const user = await Users.findOne( {$and: [
+                {_id: req.user.id},
+                {books:{ $all: req.params.bookId}}]}
+            )
+            if(user) res.status(200).json({
+                status: "books"
+            })
+            else res.status(200).json({
+                status: "false"
+            })
+    }
+    } catch(e){
+        errorHandler(res,e)
+    }
+
+}
