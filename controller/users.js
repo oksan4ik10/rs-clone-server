@@ -1,5 +1,6 @@
 const errorHandler = require('../utils/errorHandler')
 const Users = require('../models/users')
+const Reviews = require('../models/reviews')
 module.exports.getPersonal = async (req, res) => {
     try{
         const user = await Users.findOne({_id: req.user.id})
@@ -42,6 +43,10 @@ module.exports.deleteBook = async (req, res) => {
         const user = await Users.updateOne(
             {_id: req.user.id},
             {$pull: { books: req.body.bookId}}
+        )
+        await Reviews.deleteOne(
+            {userId: req.user.id},
+            {bookId: req.body.bookId}
         )
         res.status(200).json({
             modifiedCount: user.modifiedCount
