@@ -106,7 +106,7 @@ module.exports.deleteLikeBook = async (req, res) => {
         
         const user = await Users.updateOne(
             {_id: req.user.id},
-            {$pull: { books: req.body.bookId}}
+            {$pull: { booksLike: req.body.bookId}}
         )
         res.status(200).json({
             modifiedCount: user.modifiedCount
