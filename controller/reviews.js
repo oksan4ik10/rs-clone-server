@@ -5,6 +5,10 @@ module.exports.create = async (req, res) => {
     try{
         const review = await Reviews.findOne({bookId: req.body.bookId, userId: req.user.id})
         const userData = await Users.findOne({userId: req.user.id})
+        await Users.updateOne(
+            {_id: req.user.id},
+            {$pull: { booksLike: req.body.bookId}}
+        )
         if(review){
             review.text = req.body.text;
             review.date = Date.now()
@@ -13,6 +17,11 @@ module.exports.create = async (req, res) => {
             await review.save();
             res.status(200).json(review)
         } else{
+            await Users.updateOne(
+                {_id: req.user.id},
+                {$addToSet: { books: req.body.bookId}}
+            )
+   
             const reviewNew = new Reviews({
                 bookId: req.body.bookId,
                 userId: req.user.id,
