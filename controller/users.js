@@ -122,7 +122,7 @@ module.exports.checkLikeBook = async (req, res) => {
         
         const user = await Users.findOne( {$and: [
             {_id: req.user.id},
-            {books:{ $all: req.params.bookId}}]}
+            {booksLike:{ $all: req.params.bookId}}]}
         )
         if(user) res.status(200).json({
             status: true
