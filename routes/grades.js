@@ -5,6 +5,6 @@ const passport = require('passport')
 const controller = require('../controller/grades')
 
 router.post('/', passport.authenticate('jwt', {session: false}), controller.create)
-router.get('/:bookId', controller.getUserGrade)
+router.post('/user', controller.getUserGrade)
 
 module.exports = router

@@ -284,11 +284,11 @@
 
 - **URL**
 
-  /api/grades/:bookId
+  /api/grades/users
 
 - **Method:**
 
-  `GET`
+  `POST`
 
 - **Headers:**
 
@@ -307,6 +307,7 @@
   ```typescript
     {
       userId: string,
+      bookId: string
     }
   ```
 
@@ -326,16 +327,13 @@
 
 - **Error Response:**
 
-  - **Code:** 401 <br />
+  - **Code:** 404 <br />
     **Content:**
-    Unauthorized
-    - **Code:** 404 <br />
-      **Content:**
-      ```json
-      {
-        "message": "Нет оценки"
-      }
-      ```
+    ```json
+    {
+      "message": "Нет оценки"
+    }
+    ```
 
 - **Notes:**
 
