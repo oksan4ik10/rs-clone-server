@@ -11,6 +11,7 @@ const Reviews = require('../models/reviews')
 
 module.exports.updateInfoUser = async (req, res) => {
     try {
+        console.log(req.file);
         const result = await cloudinary.uploader.upload(req.file.path);
         console.log(result);
         res.send(result);
