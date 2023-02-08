@@ -39,7 +39,7 @@ module.exports.auth = async function (req, res){
             if(passwordRes){
                 const token= jwt.sign({
                     userId: candidate._id
-                }, config.keys, {expiresIn: 3600});
+                }, config.keys, {expiresIn: 60*60*24*365});
                 res.status(200).json({
                     token: `Bearer ${token}`
                 })
