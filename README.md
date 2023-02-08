@@ -284,7 +284,7 @@
 
 - **URL**
 
-  /api/grades/users
+  /api/grades/user
 
 - **Method:**
 
