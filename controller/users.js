@@ -1,6 +1,25 @@
+require('dotenv').config()
+const cloudinary = require('cloudinary').v2
+
+
+const fs = require('fs/promises');
+
 const errorHandler = require('../utils/errorHandler')
 const Users = require('../models/users')
 const Reviews = require('../models/reviews')
+
+
+module.exports.updateInfoUser = async (req, res) => {
+    try {
+        const result = await cloudinary.uploader.upload(req.file.path);
+        console.log(result);
+        res.send(result);
+      } catch (error) {
+        res.send(error);
+      }
+      fs.unlink(req.file.path);
+}
+
 module.exports.getPersonal = async (req, res) => {
     try{
         const user = await Users.findOne({_id: req.user.id})
@@ -11,6 +30,8 @@ module.exports.getPersonal = async (req, res) => {
     }
 
 }
+
+
 
 module.exports.addBook = async (req, res) => {
     try{
