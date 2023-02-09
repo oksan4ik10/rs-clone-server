@@ -42,7 +42,7 @@ module.exports.getRandomBook = async (req, res) => {
             books = await Books.find({})
         }
 
-        if (books.length>0) res.status(200).json(books[randomInteger(0,books.length)])
+        if (books.length>0) res.status(200).json(books[randomInteger(0,books.length - 1)])
         else res.status(404).json({
             "message":"Книги по заданному жанру не существует"
         })
