@@ -35,6 +35,25 @@ module.exports.create = async function (req, res){
     }
 }
 
+module.exports.delete = async function (req, res){
+    try{
+        await Grades.deleteOne({bookId: req.params.bookId, userId: req.user.id})
+        const books = await Grades.find({
+            bookId: req.params.bookId
+        })
+
+        const grade = books.reduce((prev,next)=>prev+next.value, 0) / books.length;
+        const book = await Books.findOne({_id: req.params.bookId})
+        if(grade) book.raiting = grade;
+        else book.raiting = 0;
+        await book.save()
+        res.status(200).json(book)
+    }
+    catch(e){
+        errorHandler(res,e)
+    }
+}
+
 module.exports.getUserGrade = async (req, res) => {
     try{
         const gradeUser = await Grades.findOne({bookId: req.body.bookId, userId: req.body.userId});

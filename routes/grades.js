@@ -6,5 +6,6 @@ const controller = require('../controller/grades')
 
 router.post('/', passport.authenticate('jwt', {session: false}), controller.create)
 router.post('/user', controller.getUserGrade)
+router.delete('/:bookId', passport.authenticate('jwt', {session: false}), controller.delete)
 
 module.exports = router
