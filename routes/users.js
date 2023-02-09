@@ -3,10 +3,8 @@ const { session } = require('passport')
 const router = Router()
 const passport = require('passport')
 const controller = require('../controller/users')
+const loader = require('../middleware/upload')
 
-const multer = require('multer');
-const path = require('path');
-const loader = multer({dest: path.join('./', 'tmp')});
 
 router.get('/personal', passport.authenticate('jwt', {session: false}), controller.getPersonal)
 router.post('/', passport.authenticate('jwt', {session: false}),controller.addBook)

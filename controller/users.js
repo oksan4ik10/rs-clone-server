@@ -11,12 +11,10 @@ const Reviews = require('../models/reviews')
 
 module.exports.updateInfoUser = async (req, res) => {
     try {
-        console.log(req.file);
-        const result = await cloudinary.uploader.upload(req.file.path);
-        console.log(result);
+        const result = await cloudinary.uploader.upload(req.file.path, {upload_preset: 'b7ewiaxx'});
         res.send(result);
       } catch (error) {
-        res.send(error);
+        res.status(500).json({message: error});
       }
       fs.unlink(req.file.path);
 }
