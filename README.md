@@ -844,6 +844,125 @@
 
 </details>
 
+Изменить данные пользователя <br>
+
+<details>
+
+- **URL**
+
+  /api/users/update
+
+- **Method:**
+
+  `PATCH`
+
+- **Headers:**
+  `'Content-Type': 'application/json'`
+  `'Authorization': '${token}' `
+
+- **URL Params**
+
+  None
+
+- **Query Params**
+
+  None
+
+- **Data Params**
+
+  img, name - необязательные параметры
+
+  ```typescript
+  {
+    img?: string,
+    name?: string,
+  }
+  ```
+
+- **Success Response:**
+
+  - **Code:** 200 CREATED <br />
+    **Content:**
+    ```json
+    {
+      "_id": "63dfbf89025b6e369e73986c",
+      "email": "admin@mail.ru",
+      "password": "$2a$10$PM8ZUfpqLW.kOLeReWNMIeJUqr3bqSJl8hgNfSCLpGSBbwmgwBkiW",
+      "name": "Oksana",
+      "img": "./images/avatar.jpg",
+      "books": ["63dbd4fe942b52bc2a107c35", "63dbd4fe942b52bc2a107c37"],
+      "__v": 0,
+      "booksLike": ["63dbd4fe942b52bc2a107c36"]
+    }
+    ```
+
+- **Error Response:**
+
+  - **Code:** 401 <br />
+    **Content:**
+    Unauthorized
+
+- **Notes:**
+
+  None
+
+</details>
+
+Загрузить аватар <br>
+
+<details>
+
+- **URL**
+
+  /api/users/avatar
+
+- **Method:**
+
+  `POST`
+
+- **Headers:**
+
+  `'Authorization': '${token}' `
+
+- **URL Params**
+
+  None
+
+- **Query Params**
+
+  None
+
+- **Data Params**
+
+  тип - form-data
+  key - avatar
+  value - file
+
+- **Success Response:**
+
+  - **Code:** 200 CREATED <br />
+    **Content:**
+    ```json
+    {
+      "img": "https://res.cloudinary.com/dvlrycbzj/image/upload/v1675940364/bmu1p1zpldb68mr3awak.png"
+    }
+    ```
+
+- **Error Response:**
+
+  - **Code:** 401 <br />
+    **Content:**
+    Unauthorized
+  - **Code:** 500 <br />
+    **Content:**
+    Неверный формат (png/jpg) или изображение весит больше 2 Мб
+
+- **Notes:**
+
+  None
+
+</details>
+
 ## Рецензии
 
 Добавить или изменить рецензию

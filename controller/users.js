@@ -12,8 +12,10 @@ const Reviews = require('../models/reviews')
 module.exports.setAvatar = async (req, res) => {
     try {
         const result = await cloudinary.uploader.upload(req.file.path, {upload_preset: 'b7ewiaxx'});
-        
-        res.send(result.secure_url);
+        res.status(200).json({
+            'img':result.secure_url
+        })
+
       } catch (error) {
         res.status(500).json({message: error});
       }

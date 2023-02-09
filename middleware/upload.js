@@ -13,7 +13,7 @@ const  fileFilter =  (req, file, cb) => {
 
 const loader = multer({
     dest: path.join('./', 'tmp'), 
-    limits: {fileSize: 1024 * 1924},
+    limits: {fileSize: 2 * 1024 * 1924},
     fileFilter: fileFilter 
 });
 
