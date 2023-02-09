@@ -1,38 +1,38 @@
-require('dotenv').config()
-const cloudinary = require('cloudinary').v2
+// require('dotenv').config()
+// const cloudinary = require('cloudinary').v2
 
 
-const fs = require('fs/promises');
+// const fs = require('fs/promises');
 
 const errorHandler = require('../utils/errorHandler')
 const Users = require('../models/users')
 const Reviews = require('../models/reviews')
 
 
-module.exports.setAvatar = async (req, res) => {
-    try {
-        const result = await cloudinary.uploader.upload(req.file.path, {upload_preset: 'b7ewiaxx'});
-        res.status(200).json({
-            'img':result.secure_url
-        })
+// module.exports.setAvatar = async (req, res) => {
+//     try {
+//         const result = await cloudinary.uploader.upload(req.file.path, {upload_preset: 'b7ewiaxx'});
+//         res.status(200).json({
+//             'img':result.secure_url
+//         })
 
-      } catch (error) {
-        res.status(500).json({message: error});
-      }
-      fs.unlink(req.file.path);
-}
+//       } catch (error) {
+//         res.status(500).json({message: error});
+//       }
+//       fs.unlink(req.file.path);
+// }
 
-module.exports.updateInfoUser = async(req,res) => {
-    try{
-        const user = await Users.findOne({_id: req.user.id})
-        if(req.body.img) user.img = req.body.img;
-        if (req.body.name) user.name = req.body.name;
-        await user.save();
-        res.status(200).json(user);
-    }catch(e){
-        errorHandler(res,e)
-    }
-}
+// module.exports.updateInfoUser = async(req,res) => {
+//     try{
+//         const user = await Users.findOne({_id: req.user.id})
+//         if(req.body.img) user.img = req.body.img;
+//         if (req.body.name) user.name = req.body.name;
+//         await user.save();
+//         res.status(200).json(user);
+//     }catch(e){
+//         errorHandler(res,e)
+//     }
+// }
 
 module.exports.getPersonal = async (req, res) => {
     try{
