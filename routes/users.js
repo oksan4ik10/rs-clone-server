@@ -10,8 +10,7 @@ router.get('/personal', passport.authenticate('jwt', {session: false}), controll
 router.post('/', passport.authenticate('jwt', {session: false}),controller.addBook)
 router.post('/delete', passport.authenticate('jwt', {session: false}),controller.deleteBook)
 
-router.post('avatar',  loader.single('avatar'), passport.authenticate('jwt', {session: false}),controller.setAvatar)
-
+router.post('/avatar',  loader.single('avatar'), passport.authenticate('jwt', {session: false}),controller.setAvatar)
 router.patch('/update', passport.authenticate('jwt', {session: false}),controller.updateInfoUser)
 
 router.get('/books/:bookId', passport.authenticate('jwt', {session: false}), controller.checkBook)
