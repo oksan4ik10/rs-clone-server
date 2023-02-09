@@ -36,8 +36,8 @@ module.exports.getRandomBook = async (req, res) => {
       }
     try{
         let books;
-        if(req.body.genre){
-             books = await Books.find({genre: req.body.genre})
+        if(req.params.genre !=='all'){
+             books = await Books.find({genre: req.params.genre})
         }else{
             books = await Books.find({})
         }

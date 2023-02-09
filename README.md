@@ -80,7 +80,7 @@
 
 - **URL**
 
-  /api/books/random
+  /api/books/random/:genre
 
 - **Method:**
 
@@ -94,16 +94,10 @@
 
 - **Query Params**
 
-  None
+  genre: string, если значение all, то выдается любая книга из бд
 
 - **Data Params**
-  genre - необязательный параметр
-
-  ```typescript
-  {
-    genre?: string,
-  }
-  ```
+  None
 
 - **Success Response:**
 
