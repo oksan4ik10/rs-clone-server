@@ -9,7 +9,10 @@ const loader = require('../middleware/upload')
 router.get('/personal', passport.authenticate('jwt', {session: false}), controller.getPersonal)
 router.post('/', passport.authenticate('jwt', {session: false}),controller.addBook)
 router.post('/delete', passport.authenticate('jwt', {session: false}),controller.deleteBook)
-router.patch('/update', loader.single('avatar'), passport.authenticate('jwt', {session: false}),controller.updateInfoUser)
+
+router.post('avatar',  loader.single('avatar'), passport.authenticate('jwt', {session: false}),controller.setAvatar)
+
+router.patch('/update', passport.authenticate('jwt', {session: false}),controller.updateInfoUser)
 
 router.get('/books/:bookId', passport.authenticate('jwt', {session: false}), controller.checkBook)
 

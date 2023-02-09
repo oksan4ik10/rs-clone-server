@@ -9,14 +9,18 @@ const Users = require('../models/users')
 const Reviews = require('../models/reviews')
 
 
-module.exports.updateInfoUser = async (req, res) => {
+module.exports.setAvatar = async (req, res) => {
     try {
         const result = await cloudinary.uploader.upload(req.file.path, {upload_preset: 'b7ewiaxx'});
-        res.send(result);
+        res.send(result.secure_url);
       } catch (error) {
         res.status(500).json({message: error});
       }
       fs.unlink(req.file.path);
+}
+
+module.exports.updateInfoUser = async(req,res) => {
+    
 }
 
 module.exports.getPersonal = async (req, res) => {
