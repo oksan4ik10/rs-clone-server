@@ -28,3 +28,26 @@ module.exports.getBestBook = async (req, res) => {
     }
 
 }
+
+module.exports.getRandomBook = async (req, res) => {
+    function randomInteger(min, max) {
+        let rand = min - 0.5 + Math.random() * (max - min + 1);
+        return Math.round(rand);
+      }
+    try{
+        let books;
+        if(req.body.genre){
+             books = await Books.find({genre: req.body.genre})
+        }else{
+            books = await Books.find({})
+        }
+
+        if (books.length>0) res.status(200).json(books[randomInteger(0,books.length)])
+        else res.status(404).json({
+            "message":"Книги по заданному жанру не существует"
+        })
+    } catch(e){
+        errorHandler(res,e)
+    }
+
+}
