@@ -24,7 +24,7 @@ module.exports.create = async function (req, res){
         })
         const grade = books.reduce((prev,next)=>prev+next.value, 0) / books.length;
         const book = await Books.findOne({_id: req.body.bookId})
-        book.raiting = grade;
+        book.raiting = grade.toFixed(1);
         await book.save()
         res.status(200).json(book)
 
@@ -44,7 +44,7 @@ module.exports.delete = async function (req, res){
 
         const grade = books.reduce((prev,next)=>prev+next.value, 0) / books.length;
         const book = await Books.findOne({_id: req.params.bookId})
-        if(grade) book.raiting = grade;
+        if(grade) book.raiting = grade.toFixed(1);
         else book.raiting = 0;
         await book.save()
         res.status(200).json(book)
