@@ -25,6 +25,8 @@ module.exports.setAvatar = async (req, res) => {
 module.exports.updateInfoUser = async(req,res) => {
     try{
         const user = await Users.findOne({_id: req.user.id})
+        await Reviews.updateMany({userId : req.user.id}, {$set: {userName:req.body.name, userImg: req.body.img}});
+
         if(req.body.img) user.img = req.body.img;
         if (req.body.name) user.name = req.body.name;
         await user.save();
