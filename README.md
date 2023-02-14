@@ -80,11 +80,11 @@
 
 - **URL**
 
-  /api/books/random/:genre
+  /api/books/random
 
 - **Method:**
 
-  `GET`
+  `POST`
 
 - **Headers:**
   `'Content-Type': 'application/json'`
@@ -94,10 +94,16 @@
 
 - **Query Params**
 
-  genre: string, если значение all, то выдается любая книга из бд
+None
 
 - **Data Params**
-  None
+  Необязательный параметр
+
+  ```typescript
+  {
+    genre: string,
+  }
+  ```
 
 - **Success Response:**
 
