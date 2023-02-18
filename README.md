@@ -1365,3 +1365,140 @@ None
   "status": true - если рецензия есть у пользователя, false если нету
 
 </details>
+
+## Сброс пароля
+
+Отправка ссылки по сбросу пароля на почту
+
+<details>
+
+- **URL**
+
+  /api/forget-password
+
+- **Method:**
+
+  `PUT`
+
+- **Headers:**
+
+  `'Content-Type': 'application/json'`
+
+- **URL Params**
+
+  None
+
+- **Query Params**
+
+  None
+
+- **Data Params**
+
+      ```json
+
+  {
+  "email": string
+  }
+
+  ```
+
+  ```
+
+- **Success Response:**
+
+  - **Code:** 200 CREATED <br />
+    **Content:**
+    ```json
+    {
+      "message": "Ссылка для сброса пароля отправлена на почту"
+    }
+    ```
+
+- **Error Response:**
+
+  - **Code:** 404 <br />
+    **Content:**
+    ```json
+    {
+      "message": "Пользователь с таким email не найден"
+    }
+    ```
+
+- **Notes:**
+
+  "status": true - если рецензия есть у пользователя, false если нету
+
+</details>
+
+Сброс пароля
+
+<details>
+
+- **URL**
+
+  /api/reset-password
+
+- **Method:**
+
+  `PUT`
+
+- **Headers:**
+
+  `'Content-Type': 'application/json'`
+
+- **URL Params**
+
+  None
+
+- **Query Params**
+
+  None
+
+- **Data Params**
+
+      ```json
+
+  {
+  "resetLink": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2VmNWY1NTc4ZmQzMzYxYjU0OGMwMDUiLCJpYXQiOjE2NzY3MjU4NDIsImV4cCI6MTY3NjcyNzA0Mn0.pas3FqR4JCpEYs6KbLrD9J7tlYj1FQJ9Mgt4a1qj2GA",
+  "newPass":"122"
+  }
+
+  ```
+
+  ```
+
+- **Success Response:**
+
+  - **Code:** 200 CREATED <br />
+    **Content:**
+    ```json
+    {
+      "message": "Ваш пароль изменен"
+    }
+    ```
+
+- **Error Response:**
+
+  - **Code:** 401 <br />
+    **Content:**
+    действие токена 20 минут
+
+  ```json
+  {
+    "message": "Некорректный токен. Воспользуйтесь формой восстановления пароля еще раз"
+  }
+  ```
+
+  - **Code:** 404 <br />
+    **Content:**
+    Если по ссылке попытаться дважды поменять пароль
+
+    ```json
+    {
+      "message": "Пользователь не найден"
+    }
+    ```
+
+- **Notes:**
+
+</details>

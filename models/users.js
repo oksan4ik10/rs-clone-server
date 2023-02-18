@@ -18,6 +18,9 @@ const UserSchema = new Schema({
         type: String,
         default: "./images/avatar.jpg"
     },
+    resetLink:{
+      type: String
+    },
     books:[
        
     ],
