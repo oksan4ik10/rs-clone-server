@@ -1,3 +1,4 @@
+require('dotenv').config()
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const Users = require('../models/users');
@@ -62,12 +63,10 @@ module.exports.auth = async function (req, res){
 }
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp.mail.ru',
-    port: 465,
-    secure: true,
+    service: 'gmail',
     auth: {
-        user: 'ilovehamster@mail.ru',
-        pass: 'FEXMkJKA0hHfcske2xty'
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD
     }
 });
 
@@ -76,31 +75,60 @@ module.exports.forget = async (req, res) => {
         const {email} = req.body;
         const candidate = await Users.findOne({email: req.body.email});
         if(candidate){
-            console.log(email);
+            const token= jwt.sign({
+                userId: candidate._id
+            }, config.keysReset, {expiresIn: '20m'});
             const msg = {
-                from: '"The Exapress App" <theExpressApp@example.com>', // sender address
-                to: `${email}`, // list of receivers
-                subject: "Sup", // Subject line
-                text: "Long time no see", // plain text body,
-                html:`<b>Ehuuu</b>`
+                from: '"RS Book" <rsbook@example.com>',
+                to: `${email}`,
+                subject: "Сброс пароля на RS Book",
+                text: "Long time no see",
+                html:`
+                <h4>Пожалуйста, перейдите по ссылке для сброса пароля</h4>
+                <a href = ${process.env.CLIENT_URL}#token=${token}>${process.env.CLIENT_URL}/#token=${token.slice(0,5)}...</a>
+                `
             }
-            // send mail with defined transport object
+
             const info = await transporter.sendMail(msg);
-        
-            console.log("Message sent: %s", info.messageId);
-            // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-        
-            // Preview only available when sending through an Ethereal account
-            console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-            // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+            await candidate.updateOne({resetLink: token});
             
-            res.send('Email Sent!')
+            res.status(200).json({
+                message: "Ссылка для сброса пароля отправлена на почту"
+            })
 
         } else{
             res.status(404).json({
                 message: "Пользователь с таким email не найден"
             })
         }
+    }
+    catch(e){
+        errorHandler(res, e)
+    }
+}
+
+module.exports.reset = async (req, res) => {
+    try{
+      const {resetLink,newPass} = req.body;
+      jwt.verify(resetLink, config.keysReset, async function(err, decodedData){
+        if(err){
+            return res.status(401).json({
+                message:"Некорректный токен. Воспользуйтесь формой восстановления пароля еще раз"
+            })
+        }
+        const user = await Users.findOne({resetLink});
+        if(!user) return res.status(404).json({
+            message: "Пользователь не найден"
+        })
+        const salt = bcrypt.genSaltSync(10);
+        const userUpdate = await user.updateOne({
+            resetLink: '',
+            password:bcrypt.hashSync(newPass, salt)
+        })
+        res.status(200).json({
+            message: "Ваш пароль изменен"
+        });
+      })
     }
     catch(e){
         errorHandler(res, e)
